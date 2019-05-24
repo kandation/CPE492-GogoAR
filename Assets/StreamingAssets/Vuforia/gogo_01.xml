@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="005-box-input" size="1.000000 1.000000" />
+    <ImageTarget name="008-box-input" size="1.000000 1.000000" />
+    <ImageTarget name="007-box-input" size="1.000000 1.000000" />
+    <ImageTarget name="006-box-input" size="1.000000 1.000000" />
+    <ImageTarget name="004-box-inp" size="1.000000 1.000000" />
+    <ImageTarget name="003-box-inp" size="1.000000 1.000000" />
+    <ImageTarget name="002-box-inp" size="1.000000 1.000000" />
+    <ImageTarget name="001-box-inp" size="1.000000 1.000000" />
+    <ImageTarget name="gogoboard" size="1.000000 1.000000" />
+    <ImageTarget name="gogo_002_led" size="500.000000 500.000000" />
+    <ImageTarget name="gogo_001" size="500.000000 500.000000" />
+  </Tracking>
+</QCARConfig>

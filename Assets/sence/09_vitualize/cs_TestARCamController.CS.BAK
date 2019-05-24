@@ -1,0 +1,163 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Vuforia;
+
+public class cs_TestARCamController : MonoBehaviour {
+
+    private GameObject bgPlan;
+    private bool isF = true;
+
+
+    private Image.PIXEL_FORMAT m_PixelFormat = Image.PIXEL_FORMAT.GRAYSCALE;
+    private bool m_RegisteredFormat = false;
+    private bool m_LogInfo = false;
+    public Image image;
+
+
+    void Start()
+    {
+
+        VuforiaBehaviour vuforiaBehaviour = (VuforiaBehaviour)FindObjectOfType(typeof(VuforiaBehaviour));
+        if (vuforiaBehaviour)
+        {
+
+            VuforiaARController.Instance.RegisterVuforiaStartedCallback(OnTrackablesUpdated);
+        }
+
+        //bgPlan = ARCamera_obj.transform.Find("BackgroundPlane").gameObject;
+
+        //ARCamera_obj.active = true;
+
+        //ARCamera_obj.GetComponent<VuforiaBehaviour>().enabled = true;
+        //VuforiaBehaviour.Instance.enabled = true;
+
+
+        VuforiaConfiguration.Instance.Vuforia.DelayedInitialization = false;
+
+        //VuforiaRuntime.Instance.InitVuforia();
+        //VuforiaRuntime.Instance.Deinit();
+
+
+    }
+
+    bool isff = true;
+
+
+    void Update()
+    {
+        Debug.LogWarning(VuforiaRuntime.Instance.InitializationState);
+
+        if (true)
+        {
+
+            Debug.LogWarning(CameraDevice.Instance.IsActive().ToString());
+
+
+            VuforiaRuntime.Instance.InitVuforia();
+
+
+
+            if (VuforiaRuntime.Instance.InitializationState == VuforiaRuntime.InitState.INITIALIZED && isff)
+            {
+                //CameraDevice.Instance.Init();
+                Debug.LogWarning("START CAM");
+                //CameraDevice.Instance.Start();
+                isff = false;
+            }
+
+        }
+        else
+        {
+            if (CameraDevice.Instance.IsActive())
+            {
+                //CameraDevice.Instance.Stop();
+                //CameraDevice.Instance.Deinit();
+
+            }
+
+            VuforiaRuntime.Instance.Deinit();
+            isff = true;
+
+
+
+        }
+        /* if (ShowBackgroundVideo)
+         {
+
+             //CameraDevice.Instance.Deinit();
+             CameraDevice.Instance.Stop();
+             //VuforiaRuntime.Instance.Deinit();
+             isF = true;
+
+         }
+         else
+         {
+
+
+             if (VuforiaRuntime.Instance.HasInitialized && isF)
+             {
+                 VuforiaRuntime.Instance.Deinit();
+                 isF = true;
+             }
+
+
+             if (isF)
+             {
+                // VuforiaBehaviour.Instance.enabled = true;
+                 //VuforiaRuntime.Instance.InitVuforia();
+                 CameraDevice.Instance.Deinit();
+
+                 CameraDevice.Instance.Init();
+
+                 CameraDevice.Instance.Start();
+                 //VuforiaARController.Instance.RegisterVuforiaStartedCallback(LoadDataSet);
+
+                 isF = false;
+             }
+
+
+
+         }*/
+
+
+
+    }
+
+    public void OnTrackablesUpdated()
+    {
+        Debug.Log("Trackable updated called");
+        if (!m_RegisteredFormat)
+        {
+            CameraDevice.Instance.SetFrameFormat(m_PixelFormat, true); //HERE IT GIVES THE ERROR
+            m_RegisteredFormat = true;
+        }
+        if (m_LogInfo)
+        {
+            CameraDevice cam = CameraDevice.Instance;
+            image = cam.GetCameraImage(m_PixelFormat);
+            if (image == null)
+            {
+                Debug.Log(m_PixelFormat + " image is not available yet");
+                //boxMesh.material.mainTexture = tx;
+
+            }
+            else
+            {
+                string s = m_PixelFormat + " image: \n";
+                s += "  size: " + image.Width + "x" + image.Height + "\n";
+                s += "  bufferSize: " + image.BufferWidth + "x" + image.BufferHeight + "\n";
+                s += "  stride: " + image.Stride;
+                Debug.Log(s);
+            }
+        }
+    }
+
+
+
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        CameraDevice.Instance.Deinit();
+    }
+}
