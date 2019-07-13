@@ -8,6 +8,9 @@ the equipment provided is not very close to the actual situation. We were lookin
 a technology that can replace this. And that can be used by AR technologies to
 simulate situations that may arise and build realistic. In order to imagine the activity
 
+# Screenshot
+See: https://github.com/kandation/gogoAR/issues/1
+
 # Download Full report
 (report is thai langague)
 
