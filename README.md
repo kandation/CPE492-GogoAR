@@ -12,6 +12,6 @@ simulate situations that may arise and build realistic. In order to imagine the 
 See: https://github.com/kandation/gogoAR/issues/1
 
 # Download Full report
-(report is thai langague)
+(thai langauge)
 
 Please contact: `akkhaporn[at]gmail[dot]com`
